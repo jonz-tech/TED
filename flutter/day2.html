@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>0x2: Flutter 混编及调试 | jonz-tech</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="jonz-tech的博客">
+    <link rel="preload" href="/TED/assets/css/0.styles.8772efb5.css" as="style"><link rel="preload" href="/TED/assets/js/app.63f257b9.js" as="script"><link rel="preload" href="/TED/assets/js/2.a7720a4c.js" as="script"><link rel="preload" href="/TED/assets/js/11.55c70faf.js" as="script"><link rel="prefetch" href="/TED/assets/js/10.6389405c.js"><link rel="prefetch" href="/TED/assets/js/12.001cf7a8.js"><link rel="prefetch" href="/TED/assets/js/13.70787f3e.js"><link rel="prefetch" href="/TED/assets/js/14.ce264abf.js"><link rel="prefetch" href="/TED/assets/js/15.e95ddada.js"><link rel="prefetch" href="/TED/assets/js/16.d5f94a02.js"><link rel="prefetch" href="/TED/assets/js/17.e68cbc61.js"><link rel="prefetch" href="/TED/assets/js/3.49e3dd41.js"><link rel="prefetch" href="/TED/assets/js/4.48ddd991.js"><link rel="prefetch" href="/TED/assets/js/5.0cd82e94.js"><link rel="prefetch" href="/TED/assets/js/6.8162f014.js"><link rel="prefetch" href="/TED/assets/js/7.ce305aed.js"><link rel="prefetch" href="/TED/assets/js/8.52dc745a.js"><link rel="prefetch" href="/TED/assets/js/9.fe618919.js">
+    <link rel="stylesheet" href="/TED/assets/css/0.styles.8772efb5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/TED/" class="home-link router-link-active"><!----> <span class="site-name">jonz-tech</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/TED/home/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/TED/flutter/" class="nav-link router-link-active">
+  flutter
+</a></div><div class="nav-item"><a href="/TED/android/" class="nav-link">
+  android
+</a></div><div class="nav-item"><a href="/TED/ios/" class="nav-link">
+  ios
+</a></div><div class="nav-item"><a href="/TED/ted/" class="nav-link">
+  ted
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/TED/home/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/TED/flutter/" class="nav-link router-link-active">
+  flutter
+</a></div><div class="nav-item"><a href="/TED/android/" class="nav-link">
+  android
+</a></div><div class="nav-item"><a href="/TED/ios/" class="nav-link">
+  ios
+</a></div><div class="nav-item"><a href="/TED/ted/" class="nav-link">
+  ted
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/TED/flutter/day0.html" class="sidebar-link">0x0:Flutter环境搭建</a></li><li><a href="/TED/flutter/day1.html" class="sidebar-link">0x1: 使用内部修正版Engine</a></li><li><a href="/TED/flutter/day2.html" class="active sidebar-link">0x2: Flutter 混编及调试</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/TED/flutter/day2.html#flutter-module工程创建" class="sidebar-link">flutter module工程创建</a></li><li class="sidebar-sub-header"><a href="/TED/flutter/day2.html#module-工程配置" class="sidebar-link">module 工程配置</a></li><li class="sidebar-sub-header"><a href="/TED/flutter/day2.html#调试" class="sidebar-link">调试</a></li><li class="sidebar-sub-header"><a href="/TED/flutter/day2.html#error" class="sidebar-link">Error</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_0x2-flutter-混编及调试"><a href="#_0x2-flutter-混编及调试" class="header-anchor">#</a> 0x2: Flutter 混编及调试</h1> <h2 id="flutter-module工程创建"><a href="#flutter-module工程创建" class="header-anchor">#</a> flutter module工程创建</h2> <div class="language- extra-class"><pre class="language-text"><code>mkdir flutter
+flutter create -t module flutter_vote_module
+</code></pre></div><h2 id="module-工程配置"><a href="#module-工程配置" class="header-anchor">#</a> module 工程配置</h2> <p>android strudio打开创建的工程，默认有两个隐藏文件.android,.ios</p> <h4 id="android-配置"><a href="#android-配置" class="header-anchor">#</a> android 配置</h4> <ul><li><p>配置pubspec.yaml 配置androidPackage</p></li> <li><p>构建outputs产物。</p> <div class="language- extra-class"><pre class="language-text"><code>Flutter build apk --debug
+Flutter build apk --release
+</code></pre></div></li> <li><p>将构建产物独立制作成库</p></li> <li><p>配置到native工程，并执行原生调用flutter</p> <div class="language- extra-class"><pre class="language-text"><code>protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    View FlutterView = Flutter.createView(this, getLifecycle(), &quot;defaultRoute&quot;); //传入路由标识符
+    setContentView(FlutterView);//用FlutterView替代Activity的ContentView
+}
+</code></pre></div></li></ul> <h4 id="ios配置"><a href="#ios配置" class="header-anchor">#</a> iOS配置</h4> <ul><li><p>配置pubspec.yaml 配置iosBundleIdentifier工程。</p></li> <li><p>运行.iOS runner工程。调整签名证书为iosBundleIdentifier 配置对应的bundle。并且保证运行成功</p></li> <li><p>运行android studio工程，生成构建产物</p> <div class="language- extra-class"><pre class="language-text"><code>Flutter build ios --debug
+Flutter build ios --release
+</code></pre></div></li> <li><p>module工程下创建pod spec. 然后<code>pod lib lint</code></p> <div class="language- extra-class"><pre class="language-text"><code>Pod::Spec.new do |s|
+  s.name             = 'flutter_vote_module'
+  s.version          = '0.1.0'
+  s.summary          = 'XXXXXXX'
+  s.description      = &lt;&lt;-DESC
+TODO: Add long description of the pod here.
+                       DESC
+  s.homepage         = 'https://xxxx/flutterplugin/flutterengine.git'
+  s.license          = { :type =&gt; 'MIT', :file =&gt; 'LICENSE' }
+  s.author           = { 'chenhang' =&gt; 'hangisnice@gmail.com' }
+  s.source       = { :git =&gt; &quot;&quot;, :tag =&gt; &quot;#{s.version}&quot; }
+  s.ios.deployment_target = '8.0'
+  s.ios.vendored_frameworks = '**/*.framework'
+end
+</code></pre></div></li> <li><p>Native 工程集成 module工程</p> <ul><li><p>方案1： pod 源码</p> <div class="language- extra-class"><pre class="language-text"><code>//podfile
+//定义路径
+flutter_application_path = '../../flutter_vote_module'
+load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+//target工程执行
+install_all_flutter_pods(flutter_application_path)
+</code></pre></div></li> <li><p>方案2: pod构建产物</p> <div class="language- extra-class"><pre class="language-text"><code>pod 'flutter_vote_module','1.0.6-dev'
+</code></pre></div></li></ul></li> <li><p>引入视图</p> <div class="language- extra-class"><pre class="language-text"><code>//创建engin
+FlutterDartProject * dart = [[FlutterDartProject alloc] init];
+_engine = [[FlutterEngine alloc] initWithName:@&quot;ios.dart.flutter&quot;
+                                                     project:dart];
+[_engine runWithEntrypoint:nil];
+
+//show视图
+FlutterViewController *vc = [[FlutterViewController alloc]initWithEngine:engine nibName:nil bundle:nil];
+vc.modalPresentationStyle = UIModalPresentationFullScreen;
+[self.liveController presentViewController:vc animated:YES completion:nil];
+</code></pre></div><p>正常present和push方式推荐使用flutterBoost</p></li></ul> <h2 id="调试"><a href="#调试" class="header-anchor">#</a> 调试</h2> <h4 id="flutter-的产物分为两种模式。"><a href="#flutter-的产物分为两种模式。" class="header-anchor">#</a> Flutter 的产物分为两种模式。</h4> <ul><li>一个是 Debug 模式，采用 JIT（Just In Time）的方式，好处是可以支持热更新，方便调试,，但是性能比较慢。</li> <li>另一种是 AOT（Ahead Of Time）release 模式，好处是性能比较好。</li></ul> <h4 id="debug模式下进行调试"><a href="#debug模式下进行调试" class="header-anchor">#</a> debug模式下进行调试</h4> <ul><li>native 原生工程使用pod 源码的方式集成flutter工程后，运行native app，切到flutter页面</li> <li>flutter 工程下terminal执行一下命令：</li></ul> <div class="language- extra-class"><pre class="language-text"><code>#查找可用device
+flutter devices
+		iPhone • 00008020-000504A63A45002E • ios • iOS 13.3
+		
+#执行attach
+flutter attach -d  00008020-000504A63A45002E 
+		Syncing files to device iPhone...  #表示连接成功
+		🔥  To hot reload changes while running, press &quot;r&quot;. To hot restart (and rebuild state), press &quot;R&quot;.
+</code></pre></div><ul><li>此时我们在flutter 工程上对flutter页面修改后，再执行 r,即可查看到相关改变</li></ul> <p>如果看不到上面的提示，可以检查一下：</p> <ul><li>是否同一个wifi</li> <li>关闭热点</li> <li>权限弹窗</li> <li><a href="https://github.com/flutter/flutter/issues/46705" target="_blank" rel="noopener noreferrer">其他<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul> <h2 id="error"><a href="#error" class="header-anchor">#</a> Error</h2> <ul><li><p>错误1</p> <div class="language- extra-class"><pre class="language-text"><code>//屏幕空白
+flutter devices 
+flutter run --enable-software-rendering -d  设备号f
+flutter run
+</code></pre></div></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/TED/flutter/day1.html" class="prev">
+        0x1: 使用内部修正版Engine
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/TED/assets/js/app.63f257b9.js" defer></script><script src="/TED/assets/js/2.a7720a4c.js" defer></script><script src="/TED/assets/js/11.55c70faf.js" defer></script>
+  </body>
+</html>
